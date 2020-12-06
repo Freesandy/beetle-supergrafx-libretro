@@ -51,30 +51,30 @@ extern "C" {
 struct retro_core_option_definition option_defs_us[] = {
    {
       "sgx_palette",
-      "Colour Palette",
-      "Composite tries to recreate the original console output and can show more details in some games.",
+     "调色板",
+      "复合视频模式尝试重建原始硬件的输出色彩, 在某些游戏上可以显示更多的细节.",
       {
          { "RGB", NULL },
-         { "Composite", NULL },
+         { "Composite", "复合视频" },
          { NULL, NULL},
       },
       "RGB"
    },
    {
       "sgx_cdimagecache",
-      "CD Image Cache (Restart)",
-      "Loads the complete image in memory at startup. Can potentially decrease loading times at the cost of increased startup time.",
+      "CD镜像缓存(需重启)",
+      "读取CD镜像到内存, 首次载入需要较长时间.",
       {
-         { "disabled", NULL },
-         { "enabled", NULL },
+         { "disabled",  "禁用" },
+         { "enabled",  "启用" },
          { NULL, NULL },
       },
       "disabled"
    },
    {
       "sgx_cdbios",
-      "CD BIOS (Restart)",
-      "Select which PC Engine CD BIOS to use.",
+      "CD BIOS (需重启)",
+      "大部分游戏可以在'System Card 3'下运行, 少数未授权游戏需要'Games Express'. ",
       {
          { "System Card 3", NULL },
          { "Games Express", NULL },
@@ -86,41 +86,41 @@ struct retro_core_option_definition option_defs_us[] = {
    },
    {
       "sgx_detect_gexpress",
-      "Detect Games Express CD (Restart)",
-      "When enabled, loading Games Express CD games will automatically load the Games Express CD Card bios regardless of CD BIOS setting.",
+      "检测Games Express CD (需重启)",
+      "启用后, 无论CD BIOS设置如何, 加载Games Express CD游戏都会自动加载Games Express CD卡BIOS.",
       {
-         { "enabled", NULL },
-         { "disabled", NULL },
+         { "enabled",  "启用" },
+         { "disabled",  "禁用" },
          { NULL, NULL },
       },
       "enabled"
    },
    {
       "sgx_forcesgx",
-      "Force SuperGrafx Emulation (Restart)",
-      "This is helpful to run homebrew games or isolate games that will not run in SuperGrafx mode. (like Space Harrier). Savestates are not compatible with each mode. It's better to leave this option at default (Off) unless needed. Known Supergrafx games (like Dai-Makaimura, Aldyns) will automatically switch to SuperGrafx regardless of this option.",
+      "强制SuperGrafx模拟(需重启)",
+      "这对于运行Homebrew游戏或隔离无法在SuperGrafx模式下运行的游戏很有帮助. (如太空哈利) 即使存档与其他模式不兼容. 除非需要, 否则最好将此选项保留为默认(关闭). 无论使用哪种选项, 已知的Supergrafx游戏(例如Dai-Makaimura, Aldyns)都会自动切换到SuperGrafx.",
       {
-         { "disabled", NULL },
-         { "enabled", NULL },
+         { "disabled",  "禁用" },
+         { "enabled",  "启用" },
          { NULL, NULL },
       },
       "disabled"
    },
    {
       "sgx_nospritelimit",
-      "No Sprite Limit",
-      "Remove 16-sprites-per-scanline hardware limit.",
+      "无活动块限制",
+      "移除每扫描线16个活动块的硬件限制.",
       {
-         { "disabled", NULL },
-         { "enabled", NULL },
+         { "disabled",  "禁用" },
+         { "enabled",  "启用" },
          { NULL, NULL },
       },
       "disabled"
    },
    {
       "sgx_ocmultiplier",
-      "CPU Overclock Multiplier (Restart)",
-      "Overclock the emulated CPU.",
+      "CPU超频倍率(需重启)",
+      "较高的值可以减少游戏拖慢现象, 警告：可能导致错误或崩溃.",
       {
          { "1", NULL },
          { "2", NULL },
@@ -142,8 +142,8 @@ struct retro_core_option_definition option_defs_us[] = {
    },
    {
       "sgx_hoverscan",
-      "Horizontal Overscan (352 Width Mode Only)",
-      "Modify the horizontal overscan.",
+      "水平过扫描(仅352宽度模式)",
+      "修改水平过扫描.",
       {
          { "300", NULL },
          { "302", NULL },
@@ -178,8 +178,8 @@ struct retro_core_option_definition option_defs_us[] = {
    },
    {
       "sgx_initial_scanline",
-      "Initial scanline",
-      "Adjust first display scanline..",
+      "初始扫描线",
+      "第一条渲染的扫描的扫描线, 高于0的值会剪切屏幕顶部.",
       {
          { "0", NULL },
          { "1", NULL },
@@ -228,8 +228,8 @@ struct retro_core_option_definition option_defs_us[] = {
    },
    {
       "sgx_last_scanline",
-      "Last scanline",
-      "Adjust last display scanline.",
+      "最后一条扫描线",
+      "最后一条渲染的扫描线, 低于242的值会剪切屏幕底部.",
       {
          { "208", NULL },
          { "209", NULL },
@@ -272,8 +272,8 @@ struct retro_core_option_definition option_defs_us[] = {
    },
    {
       "sgx_cddavolume",
-      "(CD) CDDA Volume %",
-      "Modify CDDA Volume %.",
+      "(CD) CDDA音量%",
+      "只应用于CD游戏, 音量值设置过高可能会导致音频削峰.",
       {
          { "0", NULL },
          { "10", NULL },
@@ -302,8 +302,8 @@ struct retro_core_option_definition option_defs_us[] = {
    },
    {
       "sgx_adpcmvolume",
-      "(CD) ADPCM Volume %",
-      "Modify ADPCM Volume %.",
+       "(CD) ADPCM音量%",
+      "只应用于CD游戏, 音量值设置过高可能会导致音频削峰.",
       {
          { "0", NULL },
          { "10", NULL },
@@ -332,8 +332,8 @@ struct retro_core_option_definition option_defs_us[] = {
    },
    {
       "sgx_cdpsgvolume",
-      "(CD) PSG Volume %",
-      "Modify CD PSG Volume %.",
+      "(CD) PSG音量%",
+      "只应用于CD游戏, 音量值设置过高可能会导致音频削峰.",
       {
          { "0", NULL },
          { "10", NULL },
@@ -362,8 +362,8 @@ struct retro_core_option_definition option_defs_us[] = {
    },
    {
       "sgx_cdspeed",
-      "(CD) CD Speed",
-      "Set the speed of the emulated CD drive.",
+      "(CD) CD 读速",
+      "配置更快的载入速度,但是可能会使一些游戏产生问题.",
       {
          { "1", NULL },
          { "2", NULL },
@@ -375,19 +375,19 @@ struct retro_core_option_definition option_defs_us[] = {
    },
    {
       "sgx_multitap",
-      "Multitap",
-      "Enables up to 5-player multitap emulation. Leave it (enabled). Disabling it is only needed on some cases (Cho Aniki).",
+      "分插",
+      "最多启用5人分插, 建议不要修改, 仅在某些情况下需要禁用它(超兄贵).",
       {
-         { "enabled", NULL },
-         { "disabled", NULL },
+         { "enabled",  "启用" },
+         { "disabled",  "禁用" },
          { NULL, NULL},
       },
       "enabled"
    },
    {
       "sgx_turbo_delay",
-      "Turbo Delay",
-      "Adjust turbo delay.",
+      "连发延迟",
+      "数字越大, 连发越慢.",
       {
          { "3", NULL },
          { "4", NULL },
@@ -410,20 +410,20 @@ struct retro_core_option_definition option_defs_us[] = {
    },
    {
       "sgx_turbo_toggle",
-      "Turbo Hotkey Mode",
-      "Turns turbo hotkeys into either an on/off switch or a dedicated turbo button. When disabled, all turbo functions are disabled. (Default hotkeys are X/Y buttons).",
+      "连发热键模式",
+      "将连发快捷键变成On/Off开关或专用连发键. 禁用时,所有连发功能都将禁用. (默认热键是X/Y按钮).",
       {
-         { "disabled", NULL },
-         { "switch", "On/Off Toggle" },
-         { "dedicated", "Dedicated Turbo Buttons" },
+         { "disabled",  "禁用" },
+         { "switch", "On/Off开关" },
+         { "dedicated", "专用连发键" },
          { NULL, NULL },
       },
       "disabled"
    },
    {
       "sgx_turbo_toggle_hotkey",
-      "Alternate Turbo Hotkey",
-      "When enabled, assigns a different turbo hotkeys (Default X/Y or L3/R3). Works only when option Turbo Hotkey Mode is in On/Off Toggle mode. You can avoid remapping Button III and IV when switching to 6-button gamepad mode with this.",
+      "备用连发热键",
+      "启用后分配一个不同的连发快捷键(默认X/Y或L3/R3). 仅在选项'连发热键模式'处于'On/Off开关'模式时有效. 此切换到6键游戏手柄模式时，可避免重新映射Button III和IV.",
       {
          { "disabled", "X/Y" },
          { "enabled", "L3/R3" },
@@ -433,30 +433,30 @@ struct retro_core_option_definition option_defs_us[] = {
    },
    {
       "sgx_disable_softreset",
-      "Disable Soft Reset (RUN+SELECT)",
-      "Pressing RUN and SELECT simultaneously on PCE gamepad will SOFT RESET the console. This is a default hardware behaviour. Set this to enabled if you want the soft reset functionality turned off.",
+      "禁用软重置(RUN + SELECT)",
+      "在PCE游戏手柄上同时按RUN和SELECT将进行软复位. 这是默认的硬件功能. 如果要关闭软重置功能, 请将其设置为启用.",
       {
-         { "disabled", NULL },
-         { "enabled", NULL },
+         { "disabled",  "禁用" },
+         { "enabled",  "启用" },
          { NULL, NULL },
       },
       "disabled"
    },
    {
       "sgx_up_down_allowed",
-      "Allow Opposing Directions",
-      "Enabling this will allow pressing / quickly alternating / holding both left and right (or up and down in some games) directions at the same time. This may cause movement based glitches to occur in certain games. It's best to keep this core option disabled.",
+      "允许反方向同时按下",
+      "启用此功能将允许同时按下/快速交替/同时按住左右两个方向 (在某些游戏中为上下). 这可能导致在某些游戏中发生基于运动的错误. 最好禁用此核心选项. ",
       {
-         { "disabled", NULL },
-         { "enabled", NULL },
+         { "disabled",  "禁用" },
+         { "enabled",  "启用" },
          { NULL, NULL },
       },
       "disabled"
    },
    {
       "sgx_mouse_sensitivity",
-      "Mouse Sensitivity",
-      "Configure the PCE Mouse device type's sensitivity.",
+      "鼠标灵敏度",
+      "配置PCE鼠标设备类型的敏感度.",
       {
          { "0.25", NULL },
          { "0.50", NULL },
@@ -484,10 +484,10 @@ struct retro_core_option_definition option_defs_us[] = {
    },
    {
       "sgx_aspect_ratio",
-      "Aspect Ratio",
-      "Select an auto (PAR) aspect ratio, or a 6:5 (Used to be default) aspect ratio, or a 4:3 TV aspect ratio. When using games that constantly switches between 256 and 352 modes and using auto aspect, its best to set Horizontal width to 342 as to minimize resizing and extra black lines since this width is in ratio of 256-width mode(or something like that, just test with Asuka 100% which is one of the game that switches between these modes)",
+      "长宽比",
+      "选择自动(PAR)宽高比, 6:5(默认设置)或4:3 TV宽高比. 当使用经常在256和352模式之间切换的游戏并使用自动宽高比时, 最好将'水平宽度'设置为342, 以最大程度地减少调整大小和多余的黑线, 因为此宽度是256宽度模式的比率.",
       {
-         { "auto", NULL },
+         { "auto", "自动" },
          { "6:5", NULL },
          { "4:3", NULL },
          { NULL, NULL },
